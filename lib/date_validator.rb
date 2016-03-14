@@ -17,19 +17,40 @@
 require "pry"
 
 def valid_date?(month, day, year)
-month = 0
-day = 0
-year = 0
+    month_31 = [1,3,5,7,8,10,12]
+    month_30 = [4,6,9,11]
+    
+    
+    
+    #search for month
+    if month < 1 || month > 12
+        return false
+    end
+    
+    #search for year
+    if year < 1880 || year > 2280
+        false
+    end
+    
+    # return month & dates
 
-if year > 1880 || year < 2280 
-	false 
-end
+    if (month_31.include? month) && !(day < 32 && day> 0)
+        return false
+    elsif (month_30.include? month) && !(day < 31 && day > 0)
+        return false
+    end
+    
+    if (year % 4 ==0 && month == 2) && (year % 100 != 0)
+        return "feb leap"
+    elsif (year % 4 ==0 & month == 2) && (year % 100 100 = 0 & year % 400 ==0)
+        return "feb leap"
+    else
+        return " No feb leap"
+  
+    
+end    
 
-if month > 1 || month < 12
-	false
-end
-
-valid_date?(12, 3, 2003)
+valid_date?(12, 31, 2003)
 
 
 binding.pry
