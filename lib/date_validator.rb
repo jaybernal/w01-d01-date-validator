@@ -14,6 +14,8 @@
 #
 # This method should, in its final form, not do any output.
 
+require pry
+
 def valid_date?(month, day, year)
 month = 0
 day = 0
@@ -27,5 +29,6 @@ if month > 1 || month < 12
 	false
 end
 
+binding.pry
 
 valid_date?(12, 3, 2003)
