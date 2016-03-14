@@ -29,6 +29,7 @@ if month > 1 || month < 12
 	false
 end
 
-binding.pry
-
 valid_date?(12, 3, 2003)
+
+
+binding.pry
