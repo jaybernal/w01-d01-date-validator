@@ -20,8 +20,6 @@ def valid_date?(month, day, year)
     month_31 = [1,3,5,7,8,10,12]
     month_30 = [4,6,9,11]
     
-    
-    
     #search for month
     if month < 1 || month > 12
         return false
@@ -40,15 +38,16 @@ def valid_date?(month, day, year)
         return false
     end
     
-    if (year % 4 ==0 && month == 2) && (year % 100 != 0)
+    if ((year % 4 == 0 && month == 2) && (year % 100 != 0)) && !(day > 0 && day < 30)
         return "feb leap"
-    elsif (year % 4 ==0 & month == 2) && (year % 100 = 0 & year % 400 ==0)
+    elsif ((year % 4 == 0 && month == 2) && (year % 100 == 0 && year % 400 ==0)) && !(day > 0 && day <30)
         return "feb leap"
     else
         return " No feb leap"
   
+    end
     
-end    
+end   
 
 valid_date?(12, 31, 2003)
 
