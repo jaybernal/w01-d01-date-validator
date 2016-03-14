@@ -42,7 +42,7 @@ def valid_date?(month, day, year)
     
     if (year % 4 ==0 && month == 2) && (year % 100 != 0)
         return "feb leap"
-    elsif (year % 4 ==0 & month == 2) && (year % 100 100 = 0 & year % 400 ==0)
+    elsif (year % 4 ==0 & month == 2) && (year % 100 = 0 & year % 400 ==0)
         return "feb leap"
     else
         return " No feb leap"
