@@ -14,8 +14,6 @@
 #
 # This method should, in its final form, not do any output.
 
-require "pry"
-
 def valid_date?(month, day, year)
     month_31 = [1,3,5,7,8,10,12]
     month_30 = [4,6,9,11]
@@ -52,4 +50,3 @@ end
 valid_date?(12, 31, 2003)
 
 
-binding.pry
