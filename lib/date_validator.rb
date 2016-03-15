@@ -15,38 +15,32 @@
 # This method should, in its final form, not do any output.
 
 def valid_date?(month, day, year)
-    month_31 = [1,3,5,7,8,10,12]
-    month_30 = [4,6,9,11]
-    
-    #search for month
-    if month < 1 || month > 12
-        return false
-    end
-    
-    #search for year
-    if year < 1880 || year > 2280
-        false
-    end
-    
-    # return month & dates
+  #write your method here
+  months_30 = [4, 6, 9, 11]
+  months_31 = [1, 3, 5, 7, 8, 10, 12]
 
-    if (month_31.include? month) && !(day < 32 && day> 0)
-        return false
-    elsif (month_30.include? month) && !(day < 31 && day > 0)
-        return false
+  if month < 1 || month > 12
+		return false
+	end
+
+	if (months_31.include? month) && !(day < 32 && day > 0)
+		return false
+	elsif (months_30.include? month) && !(day < 31 && day > 0)
+		return false
+	end
+	if (year % 4 == 0 && month == 2) && (year % 100 != 0) && !(day > 0 && day < 30)
+			return false
+	elsif (year % 4 == 0 && month == 2) && (year % 100 == 0 && year % 400 == 0) && !(day > 0 && day < 30)
+	        return false
+    elsif (month == 2) && (day > 0 && day < 29)
+			return true
+	end
+
+	if year < 1880 || year > 2280
+		return false
     end
     
-    if ((year % 4 == 0 && month == 2) && (year % 100 != 0)) && !(day > 0 && day < 30)
-        return "feb leap"
-    elsif ((year % 4 == 0 && month == 2) && (year % 100 == 0 && year % 400 ==0)) && !(day > 0 && day <30)
-        return "feb leap"
-    else 
-        return " No feb leap"
-  
-    end
-    return true
-end  
-
-valid_date?(12, 31, 2003)
+    return true    
+end
 
 
