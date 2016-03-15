@@ -21,7 +21,7 @@ def valid_date?(month, day, year)
     month_30 = [4,6,9,11]
     
 # finds all the leap years    
-     leap_year = (1880..2280).find_all {|i| i % 400 == 0 || i % 4 == 0 || i % 100 != 0}  
+     leap_year = (1880..2280).find_all {|i| i % 400 == 0 || i % 4 == 0 && i % 100 != 0}  
     
 # if years are within the range
      if year < 1880 || year > 2280
@@ -31,7 +31,7 @@ def valid_date?(month, day, year)
      end
 
 # if days are within the range
-     if day < 0 || day > 31
+     if day <= 0 || day > 31
          return false
      else
          puts "within the day range"
@@ -45,7 +45,7 @@ def valid_date?(month, day, year)
     end
 # finds leap
     if month == 2 && leap_year.include?(year) && day == 29
-        puts "leap year"        
+        puts "leap year"       
     end
 
 return true
