@@ -25,21 +25,21 @@ def valid_date?(month, day, year)
     
 # if years are within the range
      if year < 1880 || year > 2280
-         false   
+         return false   
      else 
          puts "within the year range"
      end
      
 # if days are within the range
      if day < 0 || day > 31
-         false
+         reture false
      else
          puts "within the day range"
      end
      
 # finds if months are within the range
     if month <0 || month > 12
-        false
+        return false
     else
         puts 'within the month range'
     end
