@@ -49,7 +49,7 @@ def valid_date?(month, day, year)
     else
         return false        
     end
-
+return true
 end  
 
 valid_date?(2,2,1880)
