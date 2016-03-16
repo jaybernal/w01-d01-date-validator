@@ -13,7 +13,7 @@
 # + Only worry about integer inputs (no floats, strings, etc.)
 #
 # This method should, in its final form, not do any output.
-require "pry"
+
 def valid_date?(month, day, year)
     
 # determine the days in month
