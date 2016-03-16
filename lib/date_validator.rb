@@ -13,42 +13,48 @@
 # + Only worry about integer inputs (no floats, strings, etc.)
 #
 # This method should, in its final form, not do any output.
-
+require "pry"
 def valid_date?(month, day, year)
     
-# finds the days in month
+# determine the days in month
     month_31 = [1,3,5,7,8,10,12]
     month_30 = [4,6,9,11]
     
-# finds all the leap years    
-     leap_year = (1880..2280).find_all {|i| i % 400 == 0 || i % 4 == 0 && i % 100 != 0}  
+# determines all the leap years    
+     leap_year = (1880..2280).find_all do |i| 
+     	i % 4 == 0 && 
+     	i % 100 != 0 || 
+     	i % 400 == 0
+     end 
     
 # if years are within the range
      if year < 1880 || year > 2280
-         return false   
-     else 
-         puts "within the year range"
-     end
-
-# if days are within the range
-     if day <= 0 || day > 31
-         return false
-     else
-         puts "within the day range"
+     	return false   
      end
 
 # finds if months are within the range
     if month < 0 || month > 12
-        return false
-    else
-        puts 'within the month range'
+      return false
     end
-# finds leap
-    if month == 2 && leap_year.include?(year) && day == 29
-        puts "leap year"       
+    
+# find days and months validation
+    if month_31.include?(month) && day > 31 || day <= 0
+      return false
+    end
+    
+    if month_30.include?(month) && day > 30 || day <= 0
+      return false
     end
 
-return true
+# find leap year
+    if (month == 2 && leap_year.include?(year)) && day == 29
+      return true
+    elsif month == 2 && day > 28
+     	return false
+    end
+
+  return true
 end
+
 
 
