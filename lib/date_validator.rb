@@ -30,9 +30,9 @@ end
 =end 
 
 def assign_variables(month_31,month_30,leap_year)
-    month_31 = [1,3,5,7,8,10,12]
-    month_30 = [4,6,9,11]
-    leap_year = (1880..2280).find_all { |i| i % 4 == 0 && i % 100 != 0 || }
+  month_31 = [1,3,5,7,8,10,12]
+  month_30 = [4,6,9,11]
+  leap_year = (1880..2280).find_all { |i| i % 4 == 0 && i % 100 != 0 || i % 400 == 0 }
 end
 
 def validate_year(year)
@@ -43,25 +43,25 @@ end
 
 def validate_month(month)
 	if month < 0 || month > 12
-    return false
+  	return false
   end
 end
 
 def validate_days_in_month(month)
-    if month_31.include?(month) && day > 31 || day <= 0
-    return false
+ 	if month_31.include?(month) && day > 31 || day <= 0
+   return false
   end
-  
+
   if month_30.include?(month) && day > 30 || day <= 0
-    return false
+   return false
   end
 end
 
 def is_leap_year(month, year)
-    if (month == 2 && leap_year.include?(year)) && day == 29
-    return true
+  if (month == 2 && leap_year.include?(year)) && day == 29
+   return true
   elsif month == 2 && day > 28
-   	return false
+   return false
   end
 end
 
