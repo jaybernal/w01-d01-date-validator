@@ -20,13 +20,13 @@ def valid_date?(month, day, year)
     end
 
   # find days and months validation
-  if month_31.include?(month) && day > 31 || day <= 0
-    valid_date = false
-  end
+  valid_days_in_month = validate_days_in_month(month, day, month_31, month_30)
+    if valid_days_in_month == false
+      valid_date = false
+    end
 
-  if month_30.include?(month) && day > 30 || day <= 0
-    valid_date = false
-  end
+
+
 
   # find leap year
   valid_leap_year = validate_leap_year(month, leap_year, year, day)
@@ -61,6 +61,14 @@ def validate_leap_year(month, leap_year, year, day)
   if (month == 2 && leap_year.include?(year)) && day == 29
     valid_date = true
   elsif month == 2 && day > 28
+    valid_date = false
+  end
+end
+
+def validate_days_in_month(month, day, month_31, month_30)
+  if month_31.include?(month) && day > 31 || day <= 0
+    valid_date = false
+  elsif month_30.include?(month) && day > 30 || day <= 0
     valid_date = false
   end
 end
