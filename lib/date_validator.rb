@@ -36,17 +36,30 @@ def valid_date?(month, day, year)
 end
 
 
-
-
-
+# Determines if the years are within Range
+#
+# + user will indicate the year between 1880 - 2280
+#
+# This will return true if the month is valid
 def validate_year(year)
   year >= 1880 && year <= 2280
 end
 
+
+# Determines if the month are within Range
+#
+# + user will indicate the month by an interger
+#
+# This will return true if the month is valid
 def validate_month(month)
   month >= 1 && month <= 12
 end
 
+# Stores all leap years in a single array
+#
+# + Array will list all the leap years betweeen 1880 - 2280
+#
+# This will return true if the month is valid
 def leap_year_array(year)
  year = (1880..2280).find_all do |i| 
   i % 4 == 0 && 
@@ -55,13 +68,24 @@ def leap_year_array(year)
  end 
 end
 
+# Determines if 2.29 is actually a leap year. 
+#
+# + block only runs when month "2" is enter
+#
+# This is return false if 2.29 is entered and not a leap year.
+
 def validate_leap_year(month, leap_year, year, day)
   if (month == 2 && leap_year.include?(year)) && day == 29
-    valid_date = true
   elsif month == 2 && day > 28
     valid_date = false
   end
 end
+
+# Determines if month has either 30 or 31 days
+#
+# + this block is using an array to search whether the month has 30 or 31 days
+#
+# This will return true if days are included within the months and false if outside range
 
 def validate_days_in_month(month, day, month_31, month_30)
   if month_31.include?(month) && day > 31 || day <= 0
