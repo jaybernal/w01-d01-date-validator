@@ -1,3 +1,4 @@
+require 'pry'
 def valid_date?(month, day, year)
   valid_date = true
 # determine the days in month
@@ -15,7 +16,7 @@ def valid_date?(month, day, year)
 
   # finds if months are within the range
   valid_month = validate_month(month)
-    if valid_month == false
+    if valid_month == false && valid_year == false
       valid_date = false
     end
 
@@ -24,9 +25,6 @@ def valid_date?(month, day, year)
     if valid_days_in_month == false
       valid_date = false
     end
-
-
-
 
   # find leap year
   valid_leap_year = validate_leap_year(month, leap_year, year, day)
