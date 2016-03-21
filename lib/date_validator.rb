@@ -2,33 +2,22 @@ require 'pry'
 def valid_date?(month, day, year)
   valid_date = true
 # determine the days in month
-  month_31 = [1,3,5,7,8,10,12]
-  month_30 = [4,6,9,11]
+
 
   # determines all the leap years    
   leap_year = leap_year_array(year)
  
   # if years are within the range
   valid_year = validate_year(year)
-    if valid_year == false
-      valid_date = false
-    end
+
 
   # finds if months are within the range
   valid_month = validate_month(month)
-    if valid_month == false && valid_year == false
-      valid_date = false
-    end
+
 
   # find days and months validation
-  valid_days_in_month = validate_days_in_month(month, day, month_31, month_30)
-    if valid_days_in_month == false
-      valid_date = false
-    end
-
-  # find leap year
-  valid_leap_year = validate_leap_year(month, leap_year, year, day)
-    if valid_leap_year == false
+  valid_days_in_month = validate_days_in_month(month, day, year) 
+    if valid_days_in_month == false || valid_month == false || valid_year == false
       valid_date = false
     end
 
@@ -74,12 +63,12 @@ end
 #
 # This is return false if 2.29 is entered and not a leap year.
 
-def validate_leap_year(month, leap_year, year, day)
-  if (month == 2 && leap_year.include?(year)) && day == 29
-  elsif month == 2 && day > 28
-    valid_date = false
-  end
-end
+# def validate_leap_year(month, leap_year, year, day)
+#   if (month == 2 && leap_year.include?(year)) && day == 29
+#   elsif month == 2 && day > 28
+#     valid_date = false
+#   end
+# end
 
 # Determines if month has either 30 or 31 days
 #
@@ -87,10 +76,22 @@ end
 #
 # This will return true if days are included within the months and false if outside range
 
-def validate_days_in_month(month, day, month_31, month_30)
+def validate_days_in_month(month, day, year)
+  month_31 = [1,3,5,7,8,10,12]
+  month_30 = [4,6,9,11]
+
+  leap_year = leap_year_array(year)
+
+
   if month_31.include?(month) && day > 31 || day <= 0
     valid_date = false
   elsif month_30.include?(month) && day > 30 || day <= 0
     valid_date = false
+  elsif month == 2 && leap_year.include?(year) && day == 29
+
+  elsif month == 2 && day > 28
+    valid_date = false
   end
+      
 end
+
